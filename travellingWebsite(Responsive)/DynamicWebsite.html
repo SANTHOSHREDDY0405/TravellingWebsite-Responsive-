@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            font-family: "poppins",sans-serif;
+        }
+        header{
+            z-index: 999 ;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 200px;
+            transition:0.5s ease;
+        }
+        header .brand{
+            color: #000;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration:none ;
+        }
+        header .navigation{
+            position: relative;
+        }
+        header .navigation .navigation-items a{
+            position: relative;
+            color: #000;
+            font-size: 1em;
+            font-weight:500;
+            text-decoration: none;
+            margin-left:30px ;
+            transition:0.3s ease;
+        }
+        header .navigation .navigation-items a:before{
+            content: '';
+            position: absolute;
+             background: #000;
+             width: 0;
+             height: 3px;
+             bottom: 0;
+             left: 0;
+             transition: 0.3s ease;
+        }
+        header .navigation .navigation-items a:hover:before{
+            width: 100%;
+        }
+        section{
+            padding:100px 200px;
+        }
+        .home{
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background-color:rgb(93, 93, 237);
+        }
+
+        .home::before{
+            z-index: 777;
+            content: '';
+            position: absolute;
+            background: rgba(3, 96, 251, 0.3);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+
+        }
+        .home .content{
+            z-index: 888;
+            color: #fff;
+            width: 70%;
+            margin-top:50px;
+        }
+        .home .content h1{
+            font-size: 4em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            line-height: 75px;
+            margin-bottom: 40px;
+        }
+        .home .content h1 span{
+            font: size 1.2em;
+            font-weight:600;
+        }
+        .home .content p{
+            margin-bottom: 65px;
+        }
+        .home .content a{
+            background: #fff;
+            padding:20px 35px;
+            color: #1680AC;
+            font-size: 1.1em;
+            font-weight:500;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .home .media-icons{
+            z-index: 888;
+            position: absolute;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.5 ease;
+        }
+        .home .media-icons a{
+            color: #fff;
+            font-size: 1.6em;
+            transition: 0.3s ease;
+        }
+        .home .media-icons a:not(:last-child){
+            margin-bottom: 20px;
+        }
+        .home .media-icons a:hover{
+            transform: scale(1.3);
+        }
+       
+        .home video{
+            z-index:000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-navigation{
+            z-index:888;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(80px);
+            margin-top: 12px;
+        }
+
+        .slider-navigation .nav-btn{
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 2px rgba(255,255,255,0.5);
+            transition: 0.3s ease;
+
+        }
+         
+        .slider-navigation .nav-btn{
+            background:#2696E9;
+        }
+
+        .slider-navigation .nav-btn:not(:last-child){
+            margin-right: 20px;
+        }
+
+        .slider-navigation .nav-btn:hover{
+            transform: scale(1.2);
+        }
+
+        .video-slide{
+            position: absolute;
+            width: 100%;
+            clip-path: circle(0% at 0 50%);
+        }
+          .video-slide.active{
+            clip-path: circle(150% at 0 50%);
+            transition: 2s ease;
+            transition: clip-path; 
+        } 
+        @media (max-width:1040px){
+            header{
+                padding:12px 20px;
+            }
+            section{
+                padding: 100px 20px;
+            }
+            .home .media-icons{
+                right: 15px;
+            }
+            header .navigation{
+               display:none ;
+            }
+            header .navigation.active{
+                position: fixed;
+                width:100%;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: rgba(1,1, 1, 0.5);
+            }
+            header .navigation .navigation-items a{
+                color:#222;
+                font-size: 1.2em;
+                margin: 20px;
+            }
+            header .navigation .navigation-items a::before{
+                background: #222;
+                height: 5px;
+            }
+            header .navigation.active .navigation-items{
+                background: #fff;
+                width: 600px;
+                max-width: 600px;
+                margin: 20px;
+                padding: 40px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 5px;
+                box-shadow: 0 5px 25px rgb(1 1 1 /20%);
+            }
+
+            .menu-btn{
+                background: url(https://cdn5.vectorstock.com/i/1000x1000/91/84/modern-menu-icon-for-mobile-apps-and-websites-vector-16849184.jpg)no-repeat;
+                background-size: 30px;
+                background-position: center;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                transition:0.3s ease;
+            }
+            .menu-btn.active{
+                z-index:999;
+                background: url(data:image/png;base64,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)no-repeat;
+                background-size: 25px;
+                background-position: center;
+                transition: 0.3 ease;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="brand">Travel</a>
+        <div class="menu-btn">
+
+        </div>
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Explore</a>
+                <a href="#">Gallery</a>
+                <a href="#">Home</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="home">
+        <video class="video-slide" src="1.mp4"  autoplay muted loop></video>
+        <video class="video-slide" src="2.mp4"  autoplay muted loop></video>
+        <video class="video-slide" src="3.mp4"  autoplay muted loop></video>
+        <video class="video-slide" src="4.mp4"  autoplay muted loop></video>
+        <video class="video-slide" src="5.mp4"  autoplay muted loop></video>
+        <div class="content">
+            <h1>wonderful.<br><span>island</span></h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia perspiciatis corporis voluptatibus, a illum cupiditate corrupti recusandae debitis cum fugit maiores dolorum, similique est at explicabo laudantium voluptates quibusdam repudiandae.
+            Laudantium, earum repellat. Maiores, dolorum! Voluptate veritatis consequatur beatae delectus, voluptatem hic eveniet soluta in vel natus nulla tenetur debitis temporibus ratione cumque accusamus ab rem ipsam alias. Perspiciatis, a.
+            Corrupti numquam quis, vitae iusto soluta iste aliquam sunt odit sint omnis maiores laboriosam laborum praesentium eaque veniam doloremque ea, cupiditate aspernatur a saepe corporis rerum. Quaerat deleniti similique illo!
+            Accusamus praesentium quis velit aperiam molestias expedita nulla fuga dolores iusto distinctio. Animi voluptatem voluptatum facilis vitae at explicabo, nostrum, inventore debitis, repudiandae eaque similique obcaecati numquam nisi molestiae quasi?</p>
+            <a href="#">read more </a>
+        </div>
+        <div class="media-icons">
+             <a href="#"><i class="fab fa-facebook-f"></i></a>
+             <a href="#"><i class="fab fa-instagram"></i></a>
+             <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="slider-navigation">
+            <div class="nav-btn active"></div>
+            <div class="nav-btn"></div>
+            <div class="nav-btn"></div>
+            <div class="nav-btn"></div>
+            <div class="nav-btn"></div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        //javascript of responsive navigation menu
+        const menuBtn=document.querySelector(".menu-btn");
+        const navigation=document.querySelector(".navigation");
+
+        menuBtn.addEventListener("click",()=>{
+            menuBtn.classList.toggle("active");
+            navigation.classList.toggle("active");
+        })
+        //javascript for video slider navigation
+        const btns=document.querySelectorAll(".nav-btn");
+        const slides=document.querySelectorAll(".video-slide");
+
+        var sliderNav=function(manual){
+            btns.forEach((btn)=>{
+                btn.classList.remove("active")
+            })
+
+            slides.forEach((slide)=>{
+                slide.classList.remove("active")
+            })
+
+            btns[manual].classList.add("active");
+            slides[manual].classList.add("active");
+        }
+
+        btns.forEach((btn,i)=>{
+            btn.addEventListener("click",()=>{
+                sliderNav(i)
+            })
+        })
+    </script>
+</body>
+</html>
